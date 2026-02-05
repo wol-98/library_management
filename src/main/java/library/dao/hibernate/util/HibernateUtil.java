@@ -8,44 +8,69 @@ import java.util.Properties;
 public class HibernateUtil
 {
     private static SessionFactory sessionFactory;
-    
     private static Session session;
-    
+
     static
     {
+        // Create Hibernate configuration object
         Configuration configuration = new Configuration();
-        
-        configuration.configure(); // Loads hibernate.cfg.xml from classpath
-        
-        // Sets postgres configurations
-        Properties postgresProperties = new Properties();
-        postgresProperties.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
-        postgresProperties.setProperty("hibernate.connection.url", "jdbc:postgresql:library_management");
-        postgresProperties.setProperty("hibernate.connection.username", "mukulu");
-        postgresProperties.setProperty("hibernate.connection.password", "panda");
-        postgresProperties.setProperty("dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        postgresProperties.setProperty("hibernate.connection.pool_size", "50");
-        
-        // Sets Mysql configurations
+
+        // Load settings from hibernate.cfg.xml
+        configuration.configure();
+
+        /*
+         * MySQL configuration properties.
+         * These override the values in hibernate.cfg.xml.
+         */
         Properties mysqlProperties = new Properties();
-        mysqlProperties.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
-        mysqlProperties.setProperty("hibernate.connection.url", "jdbc:mysql://localhost/library_management");
-        mysqlProperties.setProperty("hibernate.connection.username", "root");
-        mysqlProperties.setProperty("hibernate.connection.password", "root");
-        mysqlProperties.setProperty("dialect", "org.hibernate.dialect.MySQLDialect");
-        mysqlProperties.setProperty("hibernate.connection.pool_size", "50");
-        
-        
-        
-        // Uses postgres database;
-        configuration.setProperties(mysqlProperties);
+
+        // JDBC driver for MySQL 8+
+        mysqlProperties.setProperty(
+            "hibernate.connection.driver_class",
+            "com.mysql.cj.jdbc.Driver"
+        );
+
+        // Database connection URL with encoding fix
+        mysqlProperties.setProperty(
+            "hibernate.connection.url",
+            "jdbc:mysql://localhost/library_management?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8"
+        );
+
+        // Database username
+        mysqlProperties.setProperty(
+            "hibernate.connection.username",
+            "library"
+        );
+
+        // Database password
+        mysqlProperties.setProperty(
+            "hibernate.connection.password",
+            "library123"
+        );
+
+        // SQL dialect for MySQL
+        mysqlProperties.setProperty(
+            "hibernate.dialect",
+            "org.hibernate.dialect.MySQLDialect"
+        );
+
+        // Connection pool size
+        mysqlProperties.setProperty(
+            "hibernate.connection.pool_size",
+            "50"
+        );
+
+        // Apply MySQL properties
+        configuration.addProperties(mysqlProperties);
+
+        // Build the SessionFactory
         sessionFactory = configuration.buildSessionFactory();
-        
+
+        // Open a session
         session = sessionFactory.openSession();
-        
-        // No multi-threading considered
     }
-    
+
+    // Returns the current session
     public static Session getCurrentSession()
     {
         return session;

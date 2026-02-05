@@ -1,0 +1,9 @@
+library/dao/hibernate/HibernateAnnouncementDAO.class
+library/dao/UserDAO.class
+library/model/User.class
+library/model/Announcement.class
+library/dao/hibernate/util/HibernateUtil.class
+library/dao/hibernate/HibernateUserDAO.class
+library/client/UserClient.class
+library/client/AnnouncementClient.class
+library/dao/AnnouncementDAO.class
