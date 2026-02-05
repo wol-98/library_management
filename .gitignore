@@ -1,2 +1,18 @@
-*.~
-*.war
+# Maven
+target/
+dependency-reduced-pom.xml
+
+# IDE
+*.iml
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local configs
+hibernate.cfg.xml

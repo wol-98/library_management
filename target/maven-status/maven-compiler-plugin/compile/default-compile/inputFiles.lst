@@ -1,9 +1,0 @@
-/home/raphael/library_management/src/main/java/library/dao/UserDAO.java
-/home/raphael/library_management/src/main/java/library/dao/hibernate/HibernateAnnouncementDAO.java
-/home/raphael/library_management/src/main/java/library/model/Announcement.java
-/home/raphael/library_management/src/main/java/library/dao/hibernate/HibernateUserDAO.java
-/home/raphael/library_management/src/main/java/library/client/UserClient.java
-/home/raphael/library_management/src/main/java/library/dao/AnnouncementDAO.java
-/home/raphael/library_management/src/main/java/library/client/AnnouncementClient.java
-/home/raphael/library_management/src/main/java/library/dao/hibernate/util/HibernateUtil.java
-/home/raphael/library_management/src/main/java/library/model/User.java
